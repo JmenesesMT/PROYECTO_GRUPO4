@@ -2,52 +2,52 @@ create database MejoriaTutoria;
 use MejoriaTutoria;
 
 create table Tripulantes (
- Nombre nvarchar(30),
- Apellido nvarchar(30),
- usuario nvarchar(30),
-contraseña nvarchar(30),
-identificacion int8,
-telefono int8,
-correo nvarchar(30),
+ Nombre nvarchar(30) not null,
+ Apellido nvarchar(30) not null,
+ usuario nvarchar(30) not null,
+contraseña nvarchar(30) not null,
+identificacion int8 not null,
+telefono int8 not null,
+correo nvarchar(30) not null,
 primary key (identificacion)
 );
 
 create table Tutores (
- Nombre nvarchar(30),
- Apellido nvarchar(30),
- usuario nvarchar(30),
-contraseña nvarchar(30),
-identificacion int8,
-telefono int8,
-correo nvarchar(30),
+ Nombre nvarchar(30) not null,
+ Apellido nvarchar(30) not null,
+ usuario nvarchar(30) not null,
+contraseña nvarchar(30) not null,
+identificacion int8 not null,
+telefono int8 not null,
+correo nvarchar(30) not null,
 primary key (identificacion)
 );
 
 create table Sistemas (
- usuario nvarchar(30),
-contraseña nvarchar(30),
-idsistema int1,
-idtriupulante int8,
-idtutores int8,
-fecha datetime,
+ usuario nvarchar(30) not null,
+contraseña nvarchar(30) not null,
+idsistema int1 not null,
+idtriupulante int8 not null,
+idtutores int8 not null,
+fecha datetime not null,
 primary key(idsistema),
 FOREIGN KEY (idtriupulante) REFERENCES Tripulantes (identificacion),
 FOREIGN KEY (idtutores) REFERENCES Tutores (identificacion)
 );
 
 create table SistemasTutores(
-idSistemasTutores int1,
-idtutores int8,
-idsistema int1,
+idSistemasTutores int1 not null,
+idtutores int8 not null,
+idsistema int1 not null,
 primary key(idSistemasTutores),
 FOREIGN KEY (idtutores) REFERENCES Tutores (identificacion),
 FOREIGN KEY (idsistema) REFERENCES Sistemas(idsistema)
 );
 
 create table SistemasTripulantes(
-idSistemasTripulantes int1,
-idtripulantes int8,
-idsistema int1,
+idSistemasTripulantes int1 not null,
+idtripulantes int8 not null,
+idsistema int1 not null,
 primary key(idSistemasTripulantes),
 FOREIGN KEY (idtriupulantes) REFERENCES Tripulantes (identificacion),
 FOREIGN KEY (idsistema) REFERENCES Sistemas(idsistema)
